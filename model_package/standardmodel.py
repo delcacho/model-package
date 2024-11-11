@@ -12,7 +12,6 @@ from sklearn.metrics import (
 )
 import numpy as np
 import pandas as pd
-import joblib
 
 class SelfContainedModel(mlflow.pyfunc.PythonModel, ABC):
 
@@ -43,6 +42,10 @@ class SelfContainedModel(mlflow.pyfunc.PythonModel, ABC):
         if predict_proba and hasattr(self.model, 'predict_proba'):
             return self.model.predict_proba(model_input)
         return self.model.predict(model_input)
+
+    def load_context(self, context):
+        print(context.artifacts)
+        self.model = joblib.load(context.artifacts['model'])
 
     def infer_task_type(self, y):
         """Infer the task type (regression or classification) based on y."""
