@@ -8,11 +8,7 @@ from model_package.standardmodel import SelfContainedModel
 # Example usage with a RandomForestClassifier
 class ExampleClassificationModel(SelfContainedModel):
     def __init__(self):
-        super().__init__(pip_requirements = ["scikit-learn",  # specify the exact version used
-           "numpy",
-           "pandas",
-           "joblib",
-           "matplotlib"])
+        super().__init__(pip_requirements = ["pandas"])
 
     def gen_data(self):
         from sklearn.datasets import load_breast_cancer
