@@ -22,4 +22,5 @@ class ExampleClassificationModel(SelfContainedModel):
 
 if __name__ == "__main__":
         model = ExampleClassificationModel()
-        model.train()  # This trains the model and logs all details
+        uri = model.train()  # This trains the model and logs all details
+        print(uri)

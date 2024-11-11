@@ -20,7 +20,7 @@ class SelfContainedModel(mlflow.pyfunc.PythonModel, ABC):
         super().__init__()
         self.model = None
         self.model_type = None  # This will be inferred
-        self.pip_requirements = pip_requirements + ["pycm"]
+        self.pip_requirements = pip_requirements + ["pycm", "matplotlib", "scikit-learn", "joblib"]
 
     @abstractmethod
     def gen_data(self):
@@ -39,7 +39,7 @@ class SelfContainedModel(mlflow.pyfunc.PythonModel, ABC):
         X_train, X_test, y_train, y_test = self.gen_data()
         self.model = self.get_model()
         self.model.fit(X_train, y_train)
-        self.validate_and_log(self.model, X_train, X_test, y_test)
+        return self.validate_and_log(self.model, X_train, X_test, y_test)
     
     def predict(self, context, model_input, predict_proba=False):
         """Predict using the preprocessed data, handle both probability and label predictions."""
@@ -177,5 +177,5 @@ class SelfContainedModel(mlflow.pyfunc.PythonModel, ABC):
 
             # Print the model URI for easy access
             model_uri = mlflow.get_artifact_uri("model")
-            print(f"Model URI: {model_uri}")
+            return model_uri
 
