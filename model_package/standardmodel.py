@@ -32,8 +32,8 @@ class SelfContainedModel(mlflow.pyfunc.PythonModel, ABC):
         """Train the model using generated data."""
         pass
 
-    def load_context(self, context):
-        self.model = joblib.load(context.artifacts['model'])
+#    def load_context(self, context):
+#        self.model = joblib.load(context.artifacts['model'])
 
     def train(self):
         X_train, X_test, y_train, y_test = self.gen_data()
