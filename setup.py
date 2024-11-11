@@ -2,9 +2,9 @@ from setuptools import setup, find_packages
 
 setup(
     name='model_package',
-    version='0.4',
+    version='0.5',
     packages=find_packages(),
     install_requires=[
-        "mlflow==2.17.2", "matplotlib", "scikit-learn", "pycm"
+        "mlflow==2.15.1", "matplotlib", "scikit-learn", "pycm"
     ],
 )
