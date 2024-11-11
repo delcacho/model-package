@@ -20,7 +20,7 @@ class SelfContainedModel(mlflow.pyfunc.PythonModel, ABC):
         super().__init__()
         self.model = None
         self.model_type = None  # This will be inferred
-        self.pip_requirements = pip_requirements + ["pycm"]
+        self.pip_requirements = pip_requirements + ["pycm", "matplotlib", "scikit-learn", "joblib"]
 
     @abstractmethod
     def gen_data(self):
